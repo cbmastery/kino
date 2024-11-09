@@ -10,8 +10,14 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchMovies(searchTerm);
+    }
+  };
+
   useEffect(() => {
-    searchMovies("Batman");
+    searchMovies("movie");
   }, []);
 
   const searchMovies = async (title) => {
@@ -30,6 +36,7 @@ const App = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for movies"
+          onKeyDown={handleKeyDown}
         />
         <img
           src={SearchIcon}
